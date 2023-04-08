@@ -3,7 +3,12 @@ const Joi = require("joi");
 const schema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
-    phone: Joi.string().pattern(/^(\(\d{3}\)\s\d{3}-\d{4})$/).required()
+    phone: Joi.string().pattern(/^(\(\d{3}\)\s\d{3}-\d{4})$/).required(),
+    favorite: Joi.boolean(),
+});
+
+const updateFavoriteSchema = Joi.object({
+    favorite: Joi.boolean().required(),
 });
 
 const validate = (schema, obj, next, res) => {
@@ -20,6 +25,11 @@ const validate = (schema, obj, next, res) => {
     next();
 };
 
-module.exports.contact = (req, res, next) => {
-    return validate(schema, req.body, next, res);
+const favorite = (req, res, next) => {
+    return validate(updateFavoriteSchema, req.body, next, res,);
 };
+const contact = (req, res, next) => {
+    return validate(schema, req.body, next, res,);
+};
+
+module.exports = { favorite, contact }
