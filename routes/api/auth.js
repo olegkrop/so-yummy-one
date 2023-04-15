@@ -6,6 +6,8 @@ const { authorization, upload } = require('../../middlewares')
 
 
 router.post('/register', schemas.registerVal, ctrl.register)
+router.get('/verify/:verificationToken', ctrl.verifyEmail);
+router.post('/verity', schemas.emailVal, ctrl.resendVerifyEmail);
 router.post('/login', schemas.loginVal, ctrl.login)
 router.get('/current', authorization, ctrl.getCurrent);
 router.post('/logout', authorization, ctrl.logout)
