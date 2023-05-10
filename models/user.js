@@ -4,8 +4,13 @@ const emailRegexp =
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: [true, "Set name for user"],
+    },
     password: {
       type: String,
+      minlength: 6,
       required: [true, "Password is required"],
     },
     email: {
@@ -25,14 +30,6 @@ const userSchema = new Schema(
     },
     avatarURL: {
       type: String,
-    },
-    verify: {
-      type: Boolean,
-      default: false,
-    },
-    verificationToken: {
-      type: String,
-      required: [true, "Verify token is required"],
     },
   },
   {

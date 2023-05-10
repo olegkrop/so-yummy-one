@@ -38,12 +38,4 @@ router.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 
 router.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
-router.get("/verify/:verificationToken", ctrlWrapper(ctrlUser.verifyEmail));
-
-router.post(
-  "/verify",
-  validateBody(schemas.emailVerify),
-  ctrlWrapper(ctrlUser.resendEmail)
-);
-
 module.exports = router;
