@@ -32,6 +32,14 @@ router.patch(
 
 router.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 
+// Update user fields
+authRouter.put(
+  "/auth/user/update",
+  authenticate,
+  validateBody(schemas.updateUserSchema),
+  ctrlWrapper(updateUser)
+);
+//logout
 router.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
 module.exports = router;
