@@ -34,7 +34,7 @@ router.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 
 // Update user fields
 
-//logout
+// logout
 router.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
 module.exports = router;
