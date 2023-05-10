@@ -1,15 +1,45 @@
-const express = require('express');
-const { schemas } = require("../../models/user");
+const express = require("express");
+
 const router = express.Router();
-const ctrl = require('../../controllers/auth')
-const { authorization, upload } = require('../../middlewares')
 
+const ctrlUser = require("../../controllers/users");
+const { ctrlWrapper } = require("../../helpers");
 
-router.post('/register', schemas.registerVal, ctrl.register)
-router.get('/verify/:verificationToken', ctrl.verifyEmail);
-router.post('/verity', schemas.emailVal, ctrl.resendVerifyEmail);
-router.post('/login', schemas.loginVal, ctrl.login)
-router.get('/current', authorization, ctrl.getCurrent);
-router.post('/logout', authorization, ctrl.logout)
-router.patch('/avatars', authorization, upload.single('avatar'), ctrl.updateAvatars);
+const { validateBody, authenticate, upload } = require("../../middlewares");
+const schemas = require("../../schemas");
+
+// Registration
+router.post(
+  "/register",
+  validateBody(schemas.registerSchema),
+  ctrlWrapper(ctrlUser.register)
+);
+// LogIn
+router.post(
+  "/login",
+  validateBody(schemas.loginSchema),
+  ctrlWrapper(ctrlUser.login)
+);
+// avatars(используем позже)
+
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  ctrlWrapper(ctrlUser.updateAvatar)
+);
+// Get current user
+
+router.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
+
+// Update user fields
+authRouter.put(
+  "/auth/user/update",
+  authenticate,
+  validateBody(schemas.updateUserSchema),
+  ctrlWrapper(updateUser)
+);
+//logout
+router.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
+
 module.exports = router;
