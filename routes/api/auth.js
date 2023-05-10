@@ -8,24 +8,19 @@ const { ctrlWrapper } = require("../../helpers");
 const { validateBody, authenticate, upload } = require("../../middlewares");
 const schemas = require("../../schemas");
 
+// Registration
 router.post(
   "/register",
   validateBody(schemas.registerSchema),
   ctrlWrapper(ctrlUser.register)
 );
-
+// LogIn
 router.post(
   "/login",
   validateBody(schemas.loginSchema),
   ctrlWrapper(ctrlUser.login)
 );
-
-router.patch(
-  "/",
-  authenticate,
-  validateBody(schemas.updateSubscription),
-  ctrlWrapper(ctrlUser.updateSubscription)
-);
+// avatars(используем позже)
 
 router.patch(
   "/avatars",
@@ -33,6 +28,7 @@ router.patch(
   upload.single("avatar"),
   ctrlWrapper(ctrlUser.updateAvatar)
 );
+// Get current user
 
 router.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 
