@@ -1,11 +1,11 @@
 const categoriesList = [
-  "Beef",
   "Breakfast",
+  "Miscellaneous",
   "Chicken",
   "Dessert",
+  "Beef",
   "Goat",
   "Lamb",
-  "Miscellaneous",
   "Pasta",
   "Pork",
   "Seafood",
