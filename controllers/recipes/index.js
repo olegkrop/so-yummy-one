@@ -1,3 +1,3 @@
 const getCategoriesList = require("./getCategoriesList");
-
-module.exports = getCategoriesList;
+const getMainPage = require("./mainPageCategories");
+module.exports = { getCategoriesList, getMainPage };

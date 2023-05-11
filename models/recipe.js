@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const { categories } = require("../data");
+const categories = require("../data/categories");
 
 const recipeSchema = new Schema(
   {
