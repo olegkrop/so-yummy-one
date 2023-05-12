@@ -1,3 +1,4 @@
 const getCategoriesList = require("./getCategoriesList");
 const getMainPage = require("./mainPageCategories");
-module.exports = { getCategoriesList, getMainPage };
+const getRecipeByID = require("./getRecipeByID");
+module.exports = { getCategoriesList, getMainPage, getRecipeByID };
