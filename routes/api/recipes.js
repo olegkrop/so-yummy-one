@@ -1,5 +1,5 @@
 const express = require("express");
-const ctrlCategories = require("../../controllers/recipes");
+const ctrlRecipes = require("../../controllers/recipes");
 const { authenticate } = require("../../middlewares");
 const { ctrlWrapper } = require("../../helpers");
 
@@ -7,12 +7,13 @@ const recipesRouter = express.Router();
 recipesRouter.get(
   "/category-list",
   authenticate,
-  ctrlWrapper(ctrlCategories.getCategoriesList)
+  ctrlWrapper(ctrlRecipes.getCategoriesList)
 );
 recipesRouter.get(
   "/main-page",
   authenticate,
-  ctrlWrapper(ctrlCategories.getMainPage)
+  ctrlWrapper(ctrlRecipes.getMainPage)
 );
+recipesRouter.get("/:id", authenticate, ctrlWrapper(ctrlRecipes.getRecipeByID));
 
 module.exports = recipesRouter;

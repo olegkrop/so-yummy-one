@@ -1,5 +1,5 @@
-const { Schema, model } = require("mongoose");
-const categories = require("../data/categories");
+const { Schema, model, default: mongoose } = require("mongoose");
+// const categories = require("../data/categories");
 
 const recipeSchema = new Schema(
   {
@@ -10,7 +10,7 @@ const recipeSchema = new Schema(
 
     category: {
       type: String,
-      enum: [...categories],
+      //  [...categories],
       required: [true, "Set category for recipe"],
     },
 
@@ -58,7 +58,12 @@ const recipeSchema = new Schema(
       type: Array,
       default: [],
     },
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
   },
+
   { versionKey: false, timestamps: true }
 );
 // recipeSchema.post("save", handleMongooseError);
