@@ -1,3 +1,5 @@
+// /recipes/main-page
+
 const Recipe = require("../../models/recipe");
 
 const getMainPage = async (req, res) => {
