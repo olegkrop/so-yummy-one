@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ctrl = require('../../controllers/contacts')
 const { schemas } = require("../../models/contact");
-const authorization = require('../../middlewares/authorization')
+const { authorization } = require('../../middlewares')
 
 router.get("/", authorization, ctrl.getAll);
 
