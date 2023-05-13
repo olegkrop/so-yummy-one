@@ -1,5 +1,4 @@
 const { Schema, model, default: mongoose } = require("mongoose");
-// const categories = require("../data/categories");
 
 const recipeSchema = new Schema(
   {
@@ -10,7 +9,6 @@ const recipeSchema = new Schema(
 
     category: {
       type: String,
-      //  [...categories],
       required: [true, "Set category for recipe"],
     },
 
