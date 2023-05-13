@@ -1,13 +1,40 @@
-const express = require('express');
-const { schemas } = require("../../models/user");
-const router = express.Router();
-const ctrl = require('../../controllers/auth')
-const { authorization, upload } = require('../../middlewares')
+const express = require("express");
 
+const authRouter = express.Router();
 
-router.post('/register', schemas.registerVal, ctrl.register)
-router.post('/login', schemas.loginVal, ctrl.login)
-router.get('/current', authorization, ctrl.getCurrent);
-router.post('/logout', authorization, ctrl.logout)
-router.patch('/avatars', authorization, upload.single('avatar'), ctrl.updateAvatars);
-module.exports = router;
+const ctrlUser = require("../../controllers/users");
+const { ctrlWrapper } = require("../../helpers");
+
+const { validateBody, authenticate, upload } = require("../../middlewares");
+const schemas = require("../../schemas");
+
+// Registration
+authRouter.post(
+  "/register",
+  validateBody(schemas.registerSchema),
+  ctrlWrapper(ctrlUser.register)
+);
+// LogIn
+authRouter.post(
+  "/login",
+  validateBody(schemas.loginSchema),
+  ctrlWrapper(ctrlUser.login)
+);
+// avatars(используем позже)
+
+authRouter.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  ctrlWrapper(ctrlUser.updateAvatar)
+);
+// Get current user
+
+authRouter.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
+
+// Update user fields
+
+// logout
+authRouter.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
+
+module.exports = authRouter;

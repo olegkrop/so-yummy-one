@@ -1,7 +1,10 @@
-const authorization = require('./authorization');
-const upload = require('./upload');
-
+const validateBody = require("./validateBody");
+const isvalidId = require("./isvalidId");
+const authenticate = require("./authenticate");
+const upload = require("./upload");
 module.exports = {
-    authorization,
-    upload,
-}
+  validateBody,
+  isvalidId,
+  authenticate,
+  upload,
+};
