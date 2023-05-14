@@ -1,4 +1,4 @@
-// /recipes/:id
+// /recipes/id/:id
 
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
