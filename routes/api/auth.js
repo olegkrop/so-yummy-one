@@ -33,7 +33,12 @@ authRouter.patch(
 authRouter.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 
 // Update user fields
-
+authRouter.patch(
+  "/user-info",
+  authenticate,
+  upload.single("name"),
+  ctrlWrapper(ctrlUser.updateUser)
+);
 // logout
 authRouter.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
