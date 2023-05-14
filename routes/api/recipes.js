@@ -14,8 +14,16 @@ recipesRouter.get(
   authenticate,
   ctrlWrapper(ctrlRecipes.getMainPage)
 );
-recipesRouter.get("/:id", authenticate, ctrlWrapper(ctrlRecipes.getRecipeByID));
+recipesRouter.get(
+  "/id/:id",
+  authenticate,
+  ctrlWrapper(ctrlRecipes.getRecipeByID)
+);
 
-recipesRouter.get("/:category", ctrlWrapper(ctrlRecipes.getRecipeByCategory));
+recipesRouter.get(
+  "/:category",
+  authenticate,
+  ctrlWrapper(ctrlRecipes.getRecipeByCategory)
+);
 
 module.exports = recipesRouter;
