@@ -32,4 +32,10 @@ recipesRouter.patch(
   upload.single("thumb"),
   ctrlWrapper(ctrlRecipes.addOwnRecipe)
 );
+
+recipesRouter.delete(
+  "/remove-recipe",
+  authenticate,
+  ctrlWrapper(ctrlRecipes.deleteOwnRecipe)
+);
 module.exports = recipesRouter;
