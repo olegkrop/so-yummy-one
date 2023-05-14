@@ -1,3 +1,5 @@
+// /recipes/:id
+
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 const Recipe = require("../../models/recipe");
@@ -50,6 +52,5 @@ const getRecipeById = async (req, res) => {
     message: "success",
     result: recipe,
   });
-  console.log(recipe);
 };
 module.exports = getRecipeById;
