@@ -1,18 +1,24 @@
 // /remove-recipe
 const Recipe = require("../../models/recipe");
 
-const deleteOwnRecipe = async (req, res, next) => {
-  //   const { _id } = req.user;
-  const recipeId = req.params.id;
-  await Recipe.findByIdAndDelete(recipeId);
+const deleteOwnRecipe = async (req, res) => {
+  const { id: recipeId } = req.params;
+  const { _id: userId } = req.user;
 
-  //   const recipe = await Recipe.findById(_id);
-  //   await recipe.remove();
-
+  const result = await Recipe.findByIdAndRemove(recipeId, { owner: userId });
+  if (!result) {
+    res.status(404).json({
+      status: "error",
+      code: 404,
+      message: "Recipe not found or unauthorized",
+    });
+    return;
+  }
   res.json({
     status: "success",
     code: 200,
     message: "Recipe successfully deleted",
+    data: result,
   });
 };
 
