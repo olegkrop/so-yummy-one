@@ -1,6 +1,6 @@
 // recipes/:category
 const Recipe = require("../../models/recipe");
-const categories = require("../../data/categories");
+// const categories = require("../../data/categories");
 const getRecipeByCategory = async (req, res) => {
   const { category } = req.params;
 

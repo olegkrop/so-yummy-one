@@ -27,7 +27,7 @@ const recipeSchema = new Schema(
 
     thumb: {
       type: String,
-      required: [true, "Set image for recipe"],
+      // required: [true, "Set image for recipe"],
     },
 
     preview: {
@@ -56,8 +56,9 @@ const recipeSchema = new Schema(
       type: Array,
       default: [],
     },
-    id: {
+    owner: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
       required: true,
     },
   },
