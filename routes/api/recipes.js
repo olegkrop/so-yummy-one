@@ -1,6 +1,6 @@
 const express = require("express");
 const ctrlRecipes = require("../../controllers/recipes");
-const { authenticate, upload } = require("../../middlewares");
+const { authenticate } = require("../../middlewares");
 const { ctrlWrapper } = require("../../helpers");
 
 const recipesRouter = express.Router();
@@ -26,16 +26,4 @@ recipesRouter.get(
   ctrlWrapper(ctrlRecipes.getRecipeByCategory)
 );
 
-recipesRouter.patch(
-  "/add-recipe",
-  authenticate,
-  upload.single("thumb"),
-  ctrlWrapper(ctrlRecipes.addOwnRecipe)
-);
-
-recipesRouter.delete(
-  "/remove-recipe",
-  authenticate,
-  ctrlWrapper(ctrlRecipes.deleteOwnRecipe)
-);
 module.exports = recipesRouter;
