@@ -13,7 +13,7 @@ ownRecipesRouter.patch(
 );
 
 ownRecipesRouter.delete(
-  "/remove-recipe",
+  "/remove-recipe/:id",
   authenticate,
   ctrlWrapper(ctrlRecipes.deleteOwnRecipe)
 );
