@@ -8,7 +8,8 @@ const swaggerDocument = require("./swagger.json");
 
 const authRouter = require("./routes/api/auth");
 const recipesRouter = require("./routes/api/recipes");
-const owmRecipesRouter = require("./routes/api/ownRecipes");
+const ownRecipesRouter = require("./routes/api/ownRecipes");
+const favoriteRouter = require("./routes/api/favorite");
 
 const app = express();
 
@@ -21,7 +22,8 @@ app.use(express.static("public"));
 
 app.use("/auth", authRouter);
 app.use("/recipes", recipesRouter);
-app.use("/ownRecipes", owmRecipesRouter);
+app.use("/ownRecipes", ownRecipesRouter);
+app.use("/favorite", favoriteRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
