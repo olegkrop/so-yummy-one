@@ -1,5 +1,7 @@
-// recipes/add-recipe
+// add-recipe
 const Recipe = require("../../models/recipe");
+const cloudinary = require("cloudinary").v2;
+
 const addOwnRecipe = async (req, res) => {
   const { title, description, instructions, category, time, ingredients } =
     req.body;
@@ -17,12 +19,13 @@ const addOwnRecipe = async (req, res) => {
 
   // get id from request and change owner
   const { _id: owner } = req.user;
+  const { path: filePath } = req.file;
 
-  const filePath = req.file.path;
+  const { secure_url: thumb } = await cloudinary.uploader.upload(filePath);
 
   const newRecipe = await Recipe.create({
     ...req.body,
-    thumb: filePath,
+    thumb,
     owner,
   });
 

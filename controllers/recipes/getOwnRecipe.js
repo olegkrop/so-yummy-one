@@ -3,7 +3,6 @@ const Recipe = require("../../models/recipe");
 
 const getOwnRecipe = async (req, res) => {
   const { _id: userId } = req.user;
-  //   const recipeId = req.params.id;
 
   const result = await Recipe.find({ owner: userId });
   //   if (!result) {

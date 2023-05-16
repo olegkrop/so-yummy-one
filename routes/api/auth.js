@@ -5,7 +5,11 @@ const authRouter = express.Router();
 const ctrlUser = require("../../controllers/users");
 const { ctrlWrapper } = require("../../helpers");
 
-const { validateBody, authenticate, upload } = require("../../middlewares");
+const {
+  validateBody,
+  authenticate,
+  uploadCloud,
+} = require("../../middlewares");
 const schemas = require("../../schemas");
 
 // Registration
@@ -20,25 +24,18 @@ authRouter.post(
   validateBody(schemas.loginSchema),
   ctrlWrapper(ctrlUser.login)
 );
-// avatars(используем позже)
+// avatars
 
 authRouter.patch(
   "/avatars",
   authenticate,
-  upload.single("avatar"),
+  uploadCloud.single("avatars"),
   ctrlWrapper(ctrlUser.updateAvatar)
 );
 // Get current user
 
 authRouter.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 
-// Update user fields
-authRouter.patch(
-  "/user-info",
-  authenticate,
-  upload.single("name"),
-  ctrlWrapper(ctrlUser.updateUser)
-);
 // logout
 authRouter.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
