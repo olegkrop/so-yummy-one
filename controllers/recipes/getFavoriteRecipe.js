@@ -18,7 +18,6 @@ const getFavoritesRecipe = async (req, res) => {
   }
 
   res.status(200).json({
-    code: 200,
     message: "success",
     data: favoriteRecipes,
     quantity: favoriteRecipes.length,
