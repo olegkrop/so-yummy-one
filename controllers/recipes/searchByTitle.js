@@ -1,20 +1,15 @@
 const Recipe = require("../../models/recipe");
 
 const searchByTitle = async (req, res) => {
-  const { title } = req.params;
+  const { keyword } = req.query;
+  const result = await Recipe.find({
+    title: { $regex: keyword, $options: "i" },
+  });
 
-  // const result = await Recipe.find({
-  // title: { $regex: keyword, $options: "i" },
-
-  // const { title } = req.params;
-
-  const result = await Recipe.find({ title: `${title}` });
   res.json({
     status: 200,
     message: "success",
     data: result,
-
-    // title: { keyword },
   });
 };
 

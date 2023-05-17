@@ -27,7 +27,7 @@ recipesRouter.get(
 );
 
 recipesRouter.get(
-  "/search",
+  "/search/title",
   authenticate,
   ctrlWrapper(ctrlRecipes.searchByTitle)
 );
