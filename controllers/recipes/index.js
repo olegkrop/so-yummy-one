@@ -5,7 +5,6 @@ const getRecipeByCategory = require("./getRecipeByCategory");
 const addOwnRecipe = require("./addOwnRecipe");
 const deleteOwnRecipe = require("./deleteOwnRecipe");
 const getOwnRecipe = require("./getOwnRecipe");
-const getAll = require("./getAll");
 const searchByIngredient = require("./searchByIngredient");
 
 module.exports = {
@@ -16,6 +15,5 @@ module.exports = {
   addOwnRecipe,
   deleteOwnRecipe,
   getOwnRecipe,
-  getAll,
   searchByIngredient,
 };

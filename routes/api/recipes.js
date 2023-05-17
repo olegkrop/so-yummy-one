@@ -26,10 +26,8 @@ recipesRouter.get(
   ctrlWrapper(ctrlRecipes.getRecipeByCategory)
 );
 
-recipesRouter.get("/", authenticate, ctrlWrapper(ctrlRecipes.getAll));
-
 recipesRouter.get(
-  "/ingredient/:keyword",
+  "/search",
   authenticate,
   ctrlWrapper(ctrlRecipes.searchByIngredient)
 );
