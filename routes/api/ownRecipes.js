@@ -1,6 +1,6 @@
 const express = require("express");
 const ctrlRecipes = require("../../controllers/recipes");
-const { authenticate, upload } = require("../../middlewares");
+const { authenticate, uploadCloud } = require("../../middlewares");
 const { ctrlWrapper } = require("../../helpers");
 
 const ownRecipesRouter = express.Router();
@@ -8,7 +8,7 @@ const ownRecipesRouter = express.Router();
 ownRecipesRouter.patch(
   "/add-recipe",
   authenticate,
-  upload.single("thumb"),
+  uploadCloud.single("thumb"),
   ctrlWrapper(ctrlRecipes.addOwnRecipe)
 );
 

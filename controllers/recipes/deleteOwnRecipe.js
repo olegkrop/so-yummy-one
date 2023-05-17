@@ -1,4 +1,5 @@
-// /remove-recipe
+// /remove-recipe/:id
+
 const Recipe = require("../../models/recipe");
 
 const deleteOwnRecipe = async (req, res) => {
