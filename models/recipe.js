@@ -65,7 +65,6 @@ const recipeSchema = new Schema(
 
   { versionKey: false, timestamps: true }
 );
-// recipeSchema.post("save", handleMongooseError);
 
 const Recipe = model("recipe", recipeSchema);
 
