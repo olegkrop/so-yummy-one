@@ -29,8 +29,7 @@ const addOwnRecipe = async (req, res) => {
     owner,
   });
 
-  res.status(201).json({
-    code: 201,
+  res.status(200).json({
     message: "success",
     data: newRecipe,
   });

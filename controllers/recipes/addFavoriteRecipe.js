@@ -23,8 +23,7 @@ const addFavoriteRecipe = async (req, res) => {
     $pull: { favorites: recipeId },
   });
   // Відправлення відповіді з останнім доданим рецептом
-  res.status(201).json({
-    code: 201,
+  res.status(200).json({
     message: "Added to favorite",
     // Виводимо останній доданий рецепт
     data: recipe,
