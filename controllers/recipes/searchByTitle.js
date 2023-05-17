@@ -1,6 +1,6 @@
 const Recipe = require("../../models/recipe");
 
-const searchByIngredient = async (req, res) => {
+const searchByTitle = async (req, res) => {
   const { title } = req.params;
 
   // const result = await Recipe.find({
@@ -18,4 +18,4 @@ const searchByIngredient = async (req, res) => {
   });
 };
 
-module.exports = searchByIngredient;
+module.exports = searchByTitle;

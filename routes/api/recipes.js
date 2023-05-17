@@ -29,7 +29,7 @@ recipesRouter.get(
 recipesRouter.get(
   "/search",
   authenticate,
-  ctrlWrapper(ctrlRecipes.searchByIngredient)
+  ctrlWrapper(ctrlRecipes.searchByTitle)
 );
 
 module.exports = recipesRouter;

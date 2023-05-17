@@ -5,7 +5,7 @@ const getRecipeByCategory = require("./getRecipeByCategory");
 const addOwnRecipe = require("./addOwnRecipe");
 const deleteOwnRecipe = require("./deleteOwnRecipe");
 const getOwnRecipe = require("./getOwnRecipe");
-const searchByIngredient = require("./searchByIngredient");
+const searchByTitle = require("./searchByTitle");
 
 module.exports = {
   getCategoriesList,
@@ -15,5 +15,5 @@ module.exports = {
   addOwnRecipe,
   deleteOwnRecipe,
   getOwnRecipe,
-  searchByIngredient,
+  searchByTitle,
 };
