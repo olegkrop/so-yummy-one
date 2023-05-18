@@ -1,8 +1,8 @@
+// /add-favorite/:id
 const Recipe = require("../../models/recipe");
 const User = require("../../models/user");
 const addFavoriteRecipe = async (req, res) => {
   const { _id: userId } = req.user;
-
   const { id: recipeId } = req.params;
   const user = await User.findById(userId);
   if (!user) {
