@@ -26,6 +26,14 @@ const userSchema = new Schema(
     avatarURL: {
       type: String,
     },
+    favorites: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Recipe",
+        },
+      ],
+    },
   },
   {
     versionKey: false,

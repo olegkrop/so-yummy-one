@@ -6,6 +6,8 @@ const addOwnRecipe = require("./addOwnRecipe");
 const deleteOwnRecipe = require("./deleteOwnRecipe");
 const getOwnRecipe = require("./getOwnRecipe");
 const searchByTitle = require("./searchByTitle");
+const addFavoriteRecipe = require("./addFavoriteRecipe");
+const getFavoriteRecipe = require("./getFavoriteRecipe");
 
 module.exports = {
   getCategoriesList,
@@ -16,4 +18,6 @@ module.exports = {
   deleteOwnRecipe,
   getOwnRecipe,
   searchByTitle,
+  addFavoriteRecipe,
+  getFavoriteRecipe,
 };
