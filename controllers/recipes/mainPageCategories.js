@@ -11,6 +11,7 @@ const getMainPage = async (req, res) => {
     res.status(400);
     throw new Error("Bad Request");
   }
+
   res.status(200).json({
     code: 200,
     message: "success",
