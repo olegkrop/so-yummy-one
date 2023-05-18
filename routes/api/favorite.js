@@ -16,4 +16,9 @@ favoriteRouter.post(
   ctrlWrapper(ctrlRecipes.addFavoriteRecipe)
 );
 
+favoriteRouter.post(
+  "/delete-favorite/:id",
+  authenticate,
+  ctrlWrapper(ctrlRecipes.deleteFavoriteRecipe)
+);
 module.exports = favoriteRouter;
