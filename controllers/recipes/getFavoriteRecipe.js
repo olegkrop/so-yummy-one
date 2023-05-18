@@ -1,13 +1,10 @@
-// const Recipe = require("../../models/recipe");
+const Recipe = require("../../models/recipe");
 const User = require("../../models/user");
 
-const getFavoritesRecipe = async (req, res) => {
+const getFavoriteRecipe = async (req, res) => {
   const { _id: userId } = req.user;
 
-  const user = await User.findById(userId).populate({
-    path: "favorites",
-    model: "Recipe",
-  });
+  const user = await User.findById(userId);
 
   const favoriteRecipes = user.favorites;
 
@@ -16,11 +13,12 @@ const getFavoritesRecipe = async (req, res) => {
       message: "No favorites have been added yet",
     });
   }
-
+  const result = await Recipe.find({
+    _id: { $in: favoriteRecipes },
+  });
   res.status(200).json({
     message: "success",
-    data: favoriteRecipes,
-    quantity: favoriteRecipes.length,
+    data: result,
   });
 };
-module.exports = getFavoritesRecipe;
+module.exports = getFavoriteRecipe;
