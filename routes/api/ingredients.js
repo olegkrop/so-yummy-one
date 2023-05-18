@@ -5,13 +5,13 @@ const { ctrlWrapper } = require("../../helpers");
 const ingredientRouter = express.Router();
 
 ingredientRouter.get(
-  "/list",
+  "/list/:id",
   authenticate,
   ctrlWrapper(ctrlIngredients.getIngredientList)
 );
-ingredientRouter.get(
-  "/search/ingredient",
-  authenticate,
-  ctrlWrapper(ctrlIngredients.searchByIngredient)
-);
+// ingredientRouter.get(
+//   "/search/ingredient",
+//   authenticate,
+//   ctrlWrapper(ctrlIngredients.searchByIngredient)
+// );
 module.exports = ingredientRouter;
