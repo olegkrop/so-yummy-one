@@ -7,14 +7,14 @@ const addFavoriteRecipe = async (req, res) => {
   const user = await User.findById(userId);
   if (!user) {
     return res.status(404).json({
-      message: "User not found",
+      message: "User is not found",
     });
   }
 
   const recipe = await Recipe.findById(recipeId);
   if (!recipe) {
     return res.status(404).json({
-      message: "Recipe not found",
+      message: "Recipe is not found",
     });
   }
 
@@ -27,7 +27,7 @@ const addFavoriteRecipe = async (req, res) => {
   await user.save();
 
   res.status(200).json({
-    message: "Recipe added to favorites",
+    message: "Recipe is added to favorites",
     data: user,
   });
 };

@@ -17,7 +17,6 @@ const addOwnRecipe = async (req, res) => {
     throw new Error("Please fill all the required fields");
   }
 
-  // get id from request and change owner
   const { _id: owner } = req.user;
   const { path: filePath } = req.file;
 
