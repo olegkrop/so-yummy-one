@@ -9,4 +9,10 @@ shoppingListRouter.post(
   authenticate,
   ctrlWrapper(ctrlShoppingList.addToShoppingList)
 );
+
+shoppingListRouter.delete(
+  "/remove-ingredient",
+  authenticate,
+  ctrlWrapper(ctrlShoppingList.deleteFromShoppingList)
+);
 module.exports = shoppingListRouter;
