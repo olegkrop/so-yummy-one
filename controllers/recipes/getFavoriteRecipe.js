@@ -20,6 +20,7 @@ const getFavoriteRecipe = async (req, res) => {
   res.status(200).json({
     message: "success",
     data: result,
+    quantity: favoriteRecipes.length,
   });
 };
 module.exports = getFavoriteRecipe;
