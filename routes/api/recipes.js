@@ -32,4 +32,9 @@ recipesRouter.get(
   ctrlWrapper(ctrlRecipes.searchByTitle)
 );
 
+recipesRouter.get(
+  "/search/ingredient",
+  authenticate,
+  ctrlWrapper(ctrlRecipes.searchByIngredient)
+);
 module.exports = recipesRouter;
