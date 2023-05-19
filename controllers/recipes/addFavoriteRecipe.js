@@ -28,7 +28,7 @@ const addFavoriteRecipe = async (req, res) => {
 
   res.status(200).json({
     message: "Recipe is added to favorites",
-    data: user,
+    data: user.favorites,
   });
 };
 module.exports = addFavoriteRecipe;
