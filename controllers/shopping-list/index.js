@@ -1,1 +1,3 @@
-// const addTo = require("./");
+const addToShoppingList = require("./addToShoppingList");
+
+module.exports = { addToShoppingList };

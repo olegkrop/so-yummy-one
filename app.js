@@ -27,7 +27,7 @@ app.use("/recipes", recipesRouter);
 app.use("/ownRecipes", ownRecipesRouter);
 app.use("/favorite", favoriteRouter);
 app.use("/ingredients", ingredientRouter);
-app.use("/shopping-list", shoppingListRouter);
+app.use("/shoppinglist", shoppingListRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
