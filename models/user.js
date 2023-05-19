@@ -34,6 +34,10 @@ const userSchema = new Schema(
         },
       ],
     },
+    shoppingList: {
+      type: Array,
+      default: [],
+    },
   },
   {
     versionKey: false,
