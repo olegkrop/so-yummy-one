@@ -16,7 +16,7 @@ favoriteRouter.post(
   ctrlWrapper(ctrlRecipes.addFavoriteRecipe)
 );
 
-favoriteRouter.post(
+favoriteRouter.delete(
   "/delete-favorite/:id",
   authenticate,
   ctrlWrapper(ctrlRecipes.deleteFavoriteRecipe)
