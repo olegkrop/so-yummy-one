@@ -39,4 +39,10 @@ authRouter.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 // logout
 authRouter.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
+authRouter.post(
+  "/subscribe",
+  authenticate,
+  ctrlWrapper(ctrlUser.emailSubscribtion)
+);
+
 module.exports = authRouter;
