@@ -9,9 +9,5 @@ ingredientRouter.get(
   authenticate,
   ctrlWrapper(ctrlIngredients.getIngredientList)
 );
-// ingredientRouter.get(
-//   "/search/ingredient",
-//   authenticate,
-//   ctrlWrapper(ctrlIngredients.searchByIngredient)
-// );
+
 module.exports = ingredientRouter;
