@@ -15,4 +15,9 @@ shoppingListRouter.delete(
   authenticate,
   ctrlWrapper(ctrlShoppingList.deleteFromShoppingList)
 );
+shoppingListRouter.get(
+  "/get-list",
+  authenticate,
+  ctrlWrapper(ctrlShoppingList.getShoppingList)
+);
 module.exports = shoppingListRouter;

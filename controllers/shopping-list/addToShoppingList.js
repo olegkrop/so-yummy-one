@@ -6,8 +6,6 @@ const addToShoppingList = async (req, res) => {
   const { user } = req;
   const recipe = await Recipe.findById(recipeId);
 
-  //   console.log(ingredientId);
-
   if (!recipe) {
     throw new Error(`Recipe is not found`);
   }
