@@ -10,6 +10,11 @@ recipesRouter.get(
   ctrlWrapper(ctrlRecipes.getCategoriesList)
 );
 recipesRouter.get(
+  "/popular",
+  authenticate,
+  ctrlWrapper(ctrlRecipes.getPopularRecipe)
+);
+recipesRouter.get(
   "/main-page",
   authenticate,
   ctrlWrapper(ctrlRecipes.getMainPage)
@@ -37,4 +42,5 @@ recipesRouter.get(
   authenticate,
   ctrlWrapper(ctrlRecipes.searchByIngredient)
 );
+
 module.exports = recipesRouter;
