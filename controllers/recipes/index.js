@@ -10,6 +10,7 @@ const addFavoriteRecipe = require("./addFavoriteRecipe");
 const getFavoriteRecipe = require("./getFavoriteRecipe");
 const deleteFavoriteRecipe = require("./deleteFavoriteRecipe");
 const searchByIngredient = require("./searchByIngredient");
+const getPopularRecipe = require("./getPopularRecipe");
 module.exports = {
   getCategoriesList,
   getMainPage,
@@ -23,4 +24,5 @@ module.exports = {
   getFavoriteRecipe,
   deleteFavoriteRecipe,
   searchByIngredient,
+  getPopularRecipe,
 };
