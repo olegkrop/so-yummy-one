@@ -1,7 +1,6 @@
 // /get-favorite
 const Recipe = require("../../models/recipe");
 const User = require("../../models/user");
-
 const getFavoriteRecipe = async (req, res) => {
   const { _id: userId } = req.user;
 

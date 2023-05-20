@@ -10,7 +10,7 @@ const deleteFromShoppingList = async (req, res) => {
     user._id,
     {
       $pull: {
-        shoppingList: { ingredients: { $elemMatch: { id: ingredientId } } },
+        shoppingList: { $elemMatch: { id: ingredientId } },
       },
     },
     { new: true }

@@ -42,14 +42,10 @@ const addToShoppingList = async (req, res) => {
     }
   } else {
     user.shoppingList.push({
-      ingredients: [
-        {
-          id: ingredient.id.toString(),
-          measure: ingredient.measure,
-          ttl: ingredientData.ttl,
-          thb: ingredientData.thb,
-        },
-      ],
+      id: ingredient.id.toString(),
+      measure: ingredient.measure,
+      ttl: ingredientData.ttl,
+      thb: ingredientData.thb,
     });
   }
 
