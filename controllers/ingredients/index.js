@@ -1,3 +1,4 @@
 const getIngredientList = require("./getIngredientList");
+const allIngredients = require("./allIngredients");
 
-module.exports = { getIngredientList };
+module.exports = { getIngredientList, allIngredients };
