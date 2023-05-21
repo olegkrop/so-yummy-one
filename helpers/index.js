@@ -1,11 +1,11 @@
 const RequestError = require("./RequestError");
 const ctrlWrapper = require("./ctrlWrapper");
 const sendEmail = require("./sendEmail");
-const paginatedResponse = require("./paginatedResponse");
+const paginationAggregateWrapper = require("./paginationAggregateWrapper");
 
 module.exports = {
   RequestError,
   ctrlWrapper,
   sendEmail,
-  paginatedResponse,
+  paginationAggregateWrapper,
 };
