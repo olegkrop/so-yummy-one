@@ -3,7 +3,7 @@ const logout = require("./logout");
 const getCurrent = require("./getCurrent");
 const login = require("./login");
 const updateAvatar = require("./updateAvatar");
-const emailSubscribtion = require("./emailSubscribtion");
+const emailSubscription = require("./emailSubscription");
 
 module.exports = {
   register,
@@ -11,5 +11,5 @@ module.exports = {
   logout,
   getCurrent,
   updateAvatar,
-  emailSubscribtion,
+  emailSubscription,
 };

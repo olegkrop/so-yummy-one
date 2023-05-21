@@ -41,8 +41,8 @@ authRouter.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
 authRouter.post(
   "/subscribe",
-  authenticate,
-  ctrlWrapper(ctrlUser.emailSubscribtion)
+  // authenticate,
+  ctrlWrapper(ctrlUser.emailSubscription)
 );
 
 module.exports = authRouter;
