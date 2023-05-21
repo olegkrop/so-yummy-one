@@ -1,7 +1,7 @@
 const { RequestError, sendEmail } = require("../../helpers");
 const User = require("../../models/user");
 
-const emailSubscribtion = async (req, res) => {
+const emailSubscription = async (req, res) => {
   const { email } = req.query;
   const user = await User.findOne({ email });
   console.log(user);
@@ -11,15 +11,15 @@ const emailSubscribtion = async (req, res) => {
 
   const subscriptionWelcome = {
     to: email,
-    subject: "So Yammy subscripotion confirmation",
-    html: `<b>Welcome to So Yammy subscripotion!</b>`,
+    subject: "So Yammy subscription confirmation",
+    html: `<b>Dear ${user.name}!. Welcome to So Yammy subscription!</b>`,
   };
 
   await sendEmail(subscriptionWelcome);
 
   res.json({
-    message: "Subscripotion email sent successfully",
+    message: "Subscription email sent successfully",
   });
 };
 
-module.exports = emailSubscribtion;
+module.exports = emailSubscription;
