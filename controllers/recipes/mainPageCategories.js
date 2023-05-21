@@ -1,7 +1,7 @@
 // /recipes/main-page
 
 const Recipe = require("../../models/recipe");
-const { paginationWrapper } = require("../../helpers/paginationWrapper");
+const paginationWrapper = require("../../helpers/paginationWrapper");
 
 const getMainPage = async (req, res) => {
   const page = req.query.page || 1;
