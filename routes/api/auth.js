@@ -41,7 +41,7 @@ authRouter.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
 
 authRouter.post(
   "/subscribe",
-  // authenticate,
+  authenticate,
   ctrlWrapper(ctrlUser.emailSubscription)
 );
 

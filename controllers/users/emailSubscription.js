@@ -11,8 +11,8 @@ const emailSubscription = async (req, res) => {
 
   const subscriptionWelcome = {
     to: email,
-    subject: "So Yammy subscripotion confirmation",
-    html: `<b>Welcome to So Yammy subscripotion!</b>`,
+    subject: "So Yammy subscription confirmation",
+    html: `<b>Dear ${user.name}!. Welcome to So Yammy subscription!</b>`,
   };
 
   await sendEmail(subscriptionWelcome);
