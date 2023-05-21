@@ -2,8 +2,9 @@ const { RequestError, sendEmail } = require("../../helpers");
 const User = require("../../models/user");
 
 const emailSubscribtion = async (req, res) => {
-  const { email } = req.body;
+  const { email } = req.query;
   const user = await User.findOne({ email });
+  console.log(user);
   if (!user) {
     throw RequestError(401, "Email not found");
   }
