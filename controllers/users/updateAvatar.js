@@ -5,7 +5,7 @@ const updateAvatar = async (req, res) => {
   const { _id: id } = req.user;
   const { name } = req.body;
   const avatar = req.file;
-
+  console.log(avatar);
   if (!name && !avatar) {
     return res.status(422).json({
       code: 422,
@@ -14,6 +14,8 @@ const updateAvatar = async (req, res) => {
   }
 
   const user = await User.findById(id);
+  console.log(user);
+
   if (!user) {
     return res.status(404).json({
       code: 404,
@@ -26,6 +28,7 @@ const updateAvatar = async (req, res) => {
       avatar.path
     );
     user.avatarURL = avatarURL;
+    console.log(avatarURL);
   }
 
   if (name) {

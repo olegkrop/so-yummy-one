@@ -29,7 +29,7 @@ authRouter.post(
 authRouter.patch(
   "/avatars",
   authenticate,
-  uploadCloud.single("avatars"),
+  uploadCloud.single("avatar"),
   ctrlWrapper(ctrlUser.updateAvatar)
 );
 // Get current user
