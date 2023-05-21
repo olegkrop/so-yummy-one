@@ -3,10 +3,11 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 const Recipe = require("../../models/recipe");
+const User = require("../../models/user");
 
 const getRecipeById = async (req, res) => {
   const { id } = req.params;
-
+  const { _id: userId } = req.user;
   const recipe = await Recipe.aggregate([
     {
       $match: {
@@ -47,10 +48,15 @@ const getRecipeById = async (req, res) => {
       $unset: ["ingr_nfo", "ingredients.id"],
     },
   ]);
+  const user = await User.findById(userId);
+  let isFavorite = false;
+  if (user.favorites.includes(id)) {
+    isFavorite = true;
+  }
+
   res.json({
-    status: 200,
-    message: "success",
     result: recipe,
+    isFavorite: isFavorite,
   });
 };
 module.exports = getRecipeById;
