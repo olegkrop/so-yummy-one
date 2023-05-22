@@ -388,7 +388,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "success",
             "content": {
               "application/json": {
                 "schema": {
@@ -422,7 +422,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -524,7 +524,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -635,7 +635,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -655,7 +655,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/add-ingredient": {
       "post": {
         "tags": ["shopping-list"],
         "summary": "Add to shopping-list",
@@ -698,7 +700,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/remove-ingredient": {
       "patch": {
         "tags": ["shopping-list"],
         "summary": "Remove ingredient from the shopping-list",
@@ -781,7 +785,7 @@
         "operationId": "getInventory",
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -803,11 +807,11 @@
         }
       }
     },
-    "/ingredients": {
+    "/search/ingredient": {
       "get": {
-        "tags": ["ingredients"],
+        "tags": ["recipes"],
         "summary": "Get recipe by ingredient name ",
-        "description": "\n\n\nExtras:\n- Example: ingredients?query=cucumber&page=1&limit=3 \n- added the totalCount field to each object, which shows the total number of objects in the collection upon request",
+        "description": "",
         "security": [
           {
             "bearerAuth": []
@@ -827,7 +831,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "Returns 12 objects per page",
+            "description": "",
             "required": false,
             "schema": {
               "type": "string",
@@ -837,7 +841,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Page limit \n- default limit 12 items, with limit=<limit> return as much as you like depending on the length of the collection ",
+            "description": " ",
             "required": false,
             "schema": {
               "type": "string",
@@ -847,7 +851,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation",
+            "description": "Successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -885,52 +889,27 @@
         }
       }
     },
-    "/ownRecipes": {
-      "post": {
+    "/ownRecipes/add-recipe": {
+      "patch": {
         "security": [{ "bearerAuth": [] }],
         "tags": ["ownRecipes"],
         "summary": "Add own recipe",
         "description": "Returns an object with new added recipe.",
-        "consumes": ["multipart/form-data"],
-
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": "[title,category,instructions,time,description,ingredients]",
+                "required": [
+                  "title,category,instructions,time,description,ingredients"
+                ],
                 "properties": {
-                  "recipeImage": {
-                    "type": "file",
-                    "format": "binary",
-                    "description": "Recipe image. \n- Max size 3mb \n- Allowed formats jpeg, png, jpg, gif, svg\n-  If the image is not provided, the default one is set "
-                  },
                   "title": {
                     "type": "string",
                     "description": "Recipe title",
                     "example": "Fried eggplant"
                   },
-                  "category": {
-                    "type": "string",
-                    "description": "Recipe category",
-                    "example": "Starter"
-                  },
-                  "area": {
-                    "type": "string",
-                    "description": "Recipe area",
-                    "example": "Ukraine"
-                  },
 
-                  "instructions": {
-                    "type": "string",
-                    "example": [
-                      "Lorem ipsum dolor sit amet",
-                      "Lorem ipsum dolor sit amet",
-                      "Lorem ipsum dolor sit amet"
-                    ],
-
-                    "description": "Recipe instructions.Recipe instructions. Field min length 3 max 3000. Each line from a new row must be passed by an array element"
-                  },
                   "description": {
                     "type": "string",
                     "description": "Recipe description",
@@ -1001,16 +980,16 @@
           }
         }
       },
-      "get": {
+      "/ownRecipes/own-recipes/": {
         "security": [{ "bearerAuth": [] }],
         "tags": ["ownRecipes"],
         "summary": "Get own recipe",
-        "description": "\n\n\nExtras:\n- Example: ownRecipes/?page=1&limit=6  \n- added the totalCount field to each object, which shows the total number of objects in the collection upon request",
+        "description": "",
         "parameters": [
           {
             "name": "page",
             "in": "query",
-            "description": "Returns 4 objects per page",
+            "description": "",
             "required": false,
             "schema": {
               "type": "string",
@@ -1020,7 +999,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Page limit \n- default limit 4 items, with limit=<limit> return as much as you like depending on the length of the collection ",
+            "description": " ",
             "required": false,
             "schema": {
               "type": "string",
@@ -1052,7 +1031,7 @@
         }
       }
     },
-    "/ownRecipes/{recipeId}": {
+    "/ownRecipes/remove-recipe/{id}": {
       "delete": {
         "security": [{ "bearerAuth": [] }],
         "tags": ["ownRecipes"],
@@ -1291,110 +1270,6 @@
                       "example": "Recipe are not in favorites"
                     }
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ownRecipes/favorite/": {
-      "get": {
-        "security": [{ "bearerAuth": [] }],
-        "tags": ["ownRecipes/favorite"],
-        "summary": "Get user favorites recipes",
-        "description": "\n\n\nExtras:\n- Example: ownRecipes/favorite/?page=1&limit=6  \n- added the totalCount field to each object, which shows the total number of objects in the collection upon request",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Returns 4 objects per page",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Page limit \n- default limit 4 items, with limit=<limit> return as much as you like depending on the length of the collection ",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "10"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Recipes"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Unauthorized"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/popular-recipes": {
-      "get": {
-        "security": [{ "bearerAuth": [] }],
-        "tags": ["popular-recipe"],
-        "summary": "Get popular recipes",
-        "description": "\n\n\nExtras:\n- Example: popular-recipes/?page=1&limit=6  \n- added the totalCount field to each object, which shows the total number of objects in the collection upon request",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Returns 4 objects per page",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Page limit \n- default limit 4 items, with limit=<limit> return as much as you like depending on the length of the collection ",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "10"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Recipes"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Unauthorized"
                 }
               }
             }
@@ -2056,114 +1931,6 @@
         }
       },
 
-      "NewRecipe": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "description": "Unique identifier for the recipe",
-            "example": "640cd5ac2d9fecf12e8897f5"
-          },
-          "title": {
-            "type": "string",
-            "description": "Title of the recipe",
-            "example": "Mediterranean Pasta Salad"
-          },
-          "category": {
-            "type": "string",
-            "description": "Category of the recipe",
-            "example": "Seafood"
-          },
-          "area": {
-            "type": "string",
-            "description": "Area where the recipe is from",
-            "example": "Italian"
-          },
-          "instructions": {
-            "type": "string",
-            "description": "Instructions for making the recipe",
-            "example": "Bring a large saucepan of salted water to the boil\r\nAdd the pasta, stir once and cook for about 10 minutes or as directed on the packet.\r\nMeanwhile, wash the tomatoes and cut into quarters. Slice the olives. Wash the basil.\r\nPut the tomatoes into a salad bowl and tear the basil leaves over them. Add a tablespoon of olive oil and mix.\r\nWhen the pasta is ready, drain into a colander and run cold water over it to cool it quickly.\r\nToss the pasta into the salad bowl with the tomatoes and basil.\r\nAdd the sliced olives, drained mozzarella balls, and chunks of tuna. Mix well and let the salad rest for at least half an hour to allow the flavours to mingle.\r\nSprinkle the pasta with a generous grind of black pepper and drizzle with the remaining olive oil just before serving."
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of the recipe",
-            "example": "A salad made with pasta, vegetables (such as tomatoes, cucumbers, and olives), feta cheese, and a dressing made with olive oil and lemon juice."
-          },
-          "thumb": {
-            "type": "string",
-            "description": "Thumbnail image URL for the recipe",
-            "example": "https://www.themealdb.com/images/media/meals/wvqpwt1468339226.jpg"
-          },
-          "preview": {
-            "type": "string",
-            "description": "Preview image URL for the recipe",
-            "example": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560402/mwtf7uqrnsxvlpjqtslc.jpg"
-          },
-          "time": {
-            "type": "string",
-            "description": "Total cooking time for the recipe",
-            "example": "27"
-          },
-
-          "tags": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "example": "Pasta"
-            },
-            "description": "Tags for the recipe",
-            "example": ["Pasta", "Baking"]
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Date and time when the recipe was created",
-            "example": "2023-03-11T19:25:33.240Z"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Date and time when the recipe was last updated",
-            "example": "2023-04-14T20:02:28.085Z"
-          },
-          "ingredients": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "measure": {
-                  "type": "string",
-                  "description": "Measurement unit for the ingredient",
-                  "example": "200 g"
-                },
-                "_id": {
-                  "type": "string",
-                  "description": "Unique identifier for the ingredient",
-                  "example": "640c2dd963a319ea671e3724"
-                },
-                "ttl": {
-                  "type": "string",
-                  "description": "Title of the ingredient",
-                  "example": "Mozzarella Balls"
-                },
-                "desc": {
-                  "type": "string",
-                  "description": "Description of the ingredient",
-                  "example": "Small, round balls of mozzarella cheese that are soft, smooth, and milky in flavor, and are often used as a topping for pizzas, salads, and pasta dishes."
-                },
-                "t": {
-                  "type": "string",
-                  "description": "Additional information about the ingredient",
-                  "example": ""
-                },
-                "thb": {
-                  "type": "string",
-                  "description": "Thumbnail image URL for the ingredient",
-                  "example": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564797/jgwujfs7lp8bvymction.png"
-                }
-              }
-            }
-          }
-        }
-      },
       "Recipes": {
         "type": "array",
         "items": {
