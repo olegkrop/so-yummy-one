@@ -459,21 +459,18 @@
             "in": "path",
             "name": "category",
             "required": true,
-            "type": "string",
             "description": "recipe category",
             "example": "Dessert"
           },
           {
             "in": "query",
             "name": "page",
-            "type": "integer",
             "description": "page number",
             "example": 1
           },
           {
             "in": "query",
             "name": "limit",
-            "type": "integer",
             "description": "recipes quantity by one page",
             "example": 8
           }
@@ -943,14 +940,7 @@
 
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NewRecipe"
-                }
-              }
-            }
+            "description": "Success"
           },
           "401": {
             "description": "Unauthorized",
@@ -979,8 +969,10 @@
             }
           }
         }
-      },
-      "/ownRecipes/own-recipes/": {
+      }
+    },
+    "/ownRecipes/own-recipes": {
+      "get": {
         "security": [{ "bearerAuth": [] }],
         "tags": ["ownRecipes"],
         "summary": "Get own recipe",
@@ -1095,20 +1087,19 @@
         }
       }
     },
-    "/ownRecipes/favorite/{recipeId}": {
+    "/favorite/add-favorite/{id}": {
       "put": {
         "security": [{ "bearerAuth": [] }],
-        "tags": ["ownRecipes/favorite"],
+        "tags": ["favorite"],
         "summary": "Add recipe to favorite",
         "description": "Returns an object with added to favorite recipe.",
         "parameters": [
           {
             "in": "path",
-            "name": "recipeId",
+            "name": "id",
             "required": true,
-            "type": "string",
             "description": " ID of the recipe that needs to be added to favorites",
-            "example": "6446b8d2a2e4f92cc28b0683"
+            "example": "6446b8d2a454f92cc28b0683"
           }
         ],
 
@@ -1117,9 +1108,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NewRecipe"
-                }
+                "schema": {}
               }
             }
           },
@@ -1134,7 +1123,7 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Recipe already added to favorites",
             "content": {
               "application/json": {
                 "schema": {
@@ -1142,7 +1131,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Recipe id:6446b8d2a2e4f92cc28b068 not found"
+                      "example": "Recipe already added to favorites"
                     }
                   }
                 }
@@ -1150,7 +1139,7 @@
             }
           },
           "404": {
-            "description": "Not provided recipe ID error",
+            "description": "Not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -1159,22 +1148,6 @@
                     "message": {
                       "type": "string",
                       "example": "Not found"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Already added  conflict error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Recipe id:6446b8d2a2e4f92cc28b0683 already added to favorites"
                     }
                   }
                 }
@@ -1182,10 +1155,12 @@
             }
           }
         }
-      },
-      "patch": {
+      }
+    },
+    "/favorite/delete-favorite/{id}": {
+      "delete": {
         "security": [{ "bearerAuth": [] }],
-        "tags": ["ownRecipes/favorite"],
+        "tags": ["favorite"],
         "summary": "Delete recipe from favorite",
         "description": "Returns message.",
         "parameters": [
@@ -1193,15 +1168,14 @@
             "in": "path",
             "name": "recipeId",
             "required": true,
-            "type": "string",
-            "description": "ID of the recipe that needs to be deleted from favorites",
-            "example": "6446b8d2a2e4f92cc28b0683"
+            "description": "ID of the recipe",
+            "example": "6446b8d2a2e4f92ec28b0683"
           }
         ],
 
         "responses": {
           "200": {
-            "description": "Successful operation",
+            "description": "Recipe is deleted from favorites",
             "content": {
               "application/json": {
                 "schema": {
@@ -1209,7 +1183,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Recipe successfully added to favorites"
+                      "example": "Recipe is deleted from favorites"
                     }
                   }
                 }
@@ -1243,7 +1217,7 @@
             }
           },
           "404": {
-            "description": "Not provided recipe ID error",
+            "description": "This recipe was not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -1252,22 +1226,6 @@
                     "message": {
                       "type": "string",
                       "example": "Not found"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Already deleted conflict error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Recipe are not in favorites"
                     }
                   }
                 }
@@ -1458,7 +1416,7 @@
             "example": "Polina"
           },
           "avatarUrl": {
-            "type": "file",
+            "type": "string",
             "description": "User's avatar URL (new)"
           }
         }
@@ -1689,7 +1647,7 @@
               "description": "Users whose added recipe to favorite"
             },
             "totalCount": {
-              "type": "intager",
+              "type": "integer",
               "description": "Total number of recipes by category",
               "example": "64"
             }
