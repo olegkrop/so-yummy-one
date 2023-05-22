@@ -12,7 +12,7 @@ const emailSubscription = async (req, res) => {
   const subscriptionWelcome = {
     to: email,
     subject: "So Yammy subscription confirmation",
-    html: `<b>Dear ${user.name}!. Welcome to So Yammy subscription!</b>`,
+    html: `<b>Dear ${user.name}! Welcome to So Yammy subscription!</b>`,
   };
 
   await sendEmail(subscriptionWelcome);
