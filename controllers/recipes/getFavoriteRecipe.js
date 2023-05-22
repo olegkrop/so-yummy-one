@@ -27,9 +27,7 @@ const getFavoriteRecipe = async (req, res) => {
     .limit(limit);
 
   const response = {
-    message: "success",
     data: result,
-    quantity: favoriteRecipes.length,
   };
 
   if (endIndex < favoriteRecipes.length) {
