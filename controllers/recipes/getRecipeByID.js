@@ -8,6 +8,7 @@ const User = require("../../models/user");
 const getRecipeById = async (req, res) => {
   const { id } = req.params;
   const { _id: userId } = req.user;
+  console.log(id);
   const recipe = await Recipe.aggregate([
     {
       $match: {
