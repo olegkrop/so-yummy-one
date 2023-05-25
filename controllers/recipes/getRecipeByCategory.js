@@ -2,7 +2,9 @@
 const Recipe = require("../../models/recipe");
 
 const getRecipeByCategory = async (req, res) => {
-  const { category, page = 0, limit = 8 } = req.params;
+  const { category } = req.params;
+  const { page = 0, limit = 8 } = req.query;
+
   const startIndex = page * limit;
 
   const result = await Recipe.find({ category: category })
